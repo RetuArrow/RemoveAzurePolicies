@@ -2,7 +2,7 @@
 $Tenant="azure-tenant-id-here"
 
 # connect to Partner Center tenant account
-Write-Output "Connect with Partner Center account"
+Write-Output "Connect with Azure account with sufficient RBAC access rights to subscription(s) in tenant"
 Connect-AzAccount
 
 Set-AzContext -tenant $Tenant 
@@ -23,6 +23,7 @@ foreach ($Sub in $Subscriptions) {
 
 	if ( $Policy.PolicyDefinitionID -ne "") {
 		write-output "Would remove " +  $Policy.Name
+		# Remove the comment from the following statement to actually try and remove the policy assignment
 		#removeme  Remove-AzPolicyAssignment -Name $Policy.Name -Confirm:$false
 	}
 }
